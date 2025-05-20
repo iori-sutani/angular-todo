@@ -10,13 +10,13 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './todo.component.css'
 })
 export class TodoComponent {
-  todos: string[] = [];
+  todos: { text: string; completed: boolean }[] = [];
   newTodo: string = '';
 
   addTodo() {
     const trimmed = this.newTodo.trim();
     if (trimmed) {
-      this.todos.push(trimmed);     //Todoのリストをここで管理する
+      this.todos.push({ text: trimmed, completed: false });     //Todoのリストをここで管理する
       this.newTodo = '';     //入力中のTodoを一時的に保持する変数
     }
   }
@@ -24,4 +24,8 @@ export class TodoComponent {
   deleteTodo(index: number) {
     this.todos.splice(index, 1);
 }
+
+  toggleComplete(index: number) {
+    this.todos[index].completed = !this.todos[index].completed;
+  }
 }
