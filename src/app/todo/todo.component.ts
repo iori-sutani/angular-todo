@@ -1,0 +1,27 @@
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-todo',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './todo.component.html',
+  styleUrl: './todo.component.css'
+})
+export class TodoComponent {
+  todos: string[] = [];
+  newTodo: string = '';
+
+  addTodo() {
+    const trimmed = this.newTodo.trim();
+    if (trimmed) {
+      this.todos.push(trimmed);     //Todoのリストをここで管理する
+      this.newTodo = '';     //入力中のTodoを一時的に保持する変数
+    }
+  }
+
+  deleteTodo(index: number) {
+    this.todos.splice(index, 1);
+}
+}
