@@ -1,27 +1,7 @@
-<!-- src/app/todo/todo.component.html
 <div class="todo-container">
-  <h2>My ToDo List</h2>
+  <h2>今日やることリスト</h2>
 
-  <input
-    [(ngModel)]="newTodo"
-    (keyup.enter)="addTodo()"
-    placeholder="Enter new task"
-  />
-  <button (click)="addTodo()">Add</button>
-
-  <ul>
-    <li *ngFor="let todo of todos; let i = index">
-      {{ todo }}
-      <button (click)="deleteTodo(i)">Delete</button>
-    </li>
-  </ul>
-</div> -->
-
-
-<div class="todo-container">
-  <h2>My ToDo List</h2>
-
-  <div style="display: flex; gap: 0.5rem;">
+  <div class="addTodoArea">
     <input
       [(ngModel)]="newTodo"
       (keyup.enter)="addTodo()"
@@ -32,7 +12,7 @@
 
   <ul>
     <li *ngFor="let todo of todos; let i = index">
-      <label style="display: flex; align-items: center; gap: 0.5rem; flex-grow: 1;">
+      <label>
         <input
           type="checkbox"
           [(ngModel)]="todo.completed"
@@ -42,4 +22,10 @@
       <button (click)="deleteTodo(i)">Delete</button>
     </li>
   </ul>
+
+  <div class="clearButton">
+    <button class="deleteCompletedTodos" (click)="clearCompleted()" [disabled]="!hasCompletedTodos()">
+      Delete Completed Todos
+    </button>
+  </div>
 </div>
